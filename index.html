@@ -6,64 +6,21 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
       <div id="intro">
-        <h1>Garbage Collection Map</h1>
-        <p class="main">The city of Philadelphia collects garbage from
-        Monday—Friday. The city is divided into 67 regions, each of which is
-        assigned to one of the five days of the week.</p>
-        <p>This application shows each region color coded based on day of
-        week of garbage collection. To get more information about garbage
-        collection for one of the regions, click on that region on the map.</p>
-      </div>
-      <div id="results" style="display: none;">
-        <h1 class="day-of-week">Day of Week</h1>
-        <p class="main">Your garbage collection day is <span class="day-of-week">
-        Day of Week</span>.</p>
-        <p>Please be sure to leave your garbage outside on <span class="day-of-week">
-        Day of Week</span>. If this week is a federal holiday, leave your
-        garbage outside on the following day.</p>
+        <h1>New York State Outdoor Attractions</h1>
+        <h2 id = 'attraction-feature'></h2>
+        <p id = 'info' class="main">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
       </div>
     </div>
+    <button id = 'previous-button'></button>
+    <button id = 'next-button' class = 'button-next-1'>NEXT</button>
     <!-- Map -->
     <div id="map" class="map"></div>
-    <!-- Legend -->
-    <div class = 'legend'>
-      <table>
-        <thead>Legend</thead>
-        <tr>
-          <td class = 'mon-color'></td>
-          <td>Monday</td>
-        </tr>
-        <tr>
-          <td class = 'tue-color'></td>
-          <td>Tuesday</td>
-        </tr>
-        <tr>
-          <td class = 'wed-color'></td>
-          <td>Wednesday</td>
-        </tr>
-        <tr>
-          <td class = 'thu-color'></td>
-          <td>Thursday</td>
-        </tr>
-        <tr>
-          <td class = 'fri-color'></td>
-          <td>Friday</td>
-        </tr>
-        <tr>
-          <td class = 'sat-color'></td>
-          <td>Saturday</td>
-        </tr>
-        <tr>
-          <td class = 'sun-color'></td>
-          <td>Sunday</td>
-        </tr>
-      </table>
-    </div>
     <!-- Javascript Imports -->
     <script src="js/jquery-2.2.0.js"></script>
     <script src="js/underscore.js"></script>
