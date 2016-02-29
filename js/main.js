@@ -108,7 +108,7 @@ $(document).ready(function() {
                   $('#next-button').on('click', function(){
                     //map.removeLayer(boatingMarkers);
                     $('#previous-button').toggleClass().toggleClass('button-previous').text('PREVIOUS');
-                    $('#next-button').toggleClass('button-next-rest').toggleClass('button-next-1');
+                    $('#next-button').toggleClass('button-next-1').toggleClass();
                     $('#attraction-feature').text('Campgrounds');
                     $('#info').text(campgroundText);
                     $.ajax(dataset).done(function(data) {
