@@ -135,6 +135,29 @@ var pointToLayer_camping = function (feature, latlng) {
   return L.circleMarker(latlng, campingMarkers);
 };
 
+var pointToLayer_compare = function (feature, latlng) {
+  if (feature.properties.FEATURE == 'EQUESTRIAN'){
+    return L.circleMarker(latlng, equestrianMarkers);
+  }
+  if (feature.properties.FEATURE == 'NATURE OBSERVATION' ||
+      feature.properties.FEATURE == 'HISTORIC SITE'){
+    return L.circleMarker(latlng, sightseeingMarkers);
+  }
+  if (feature.properties.FEATURE == 'BOATING' ||
+      feature.properties.FEATURE == 'CANOEING' ||
+      feature.properties.FEATURE == 'FISHING'){
+    return L.circleMarker(latlng, waterMarkers);
+  }
+  if (feature.properties.FEATURE == 'HIKING TRAIL'){
+    return L.circleMarker(latlng, hikingMarkers);
+  }
+  if (feature.properties.FEATURE == 'CAMPGROUND' ||
+      feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
+      feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
+      feature.properties.FEATURE == 'PICNIC SITE'){
+    return L.circleMarker(latlng, campingMarkers);
+  }
+};
 
 //ON EACH FEATURE FUNCTION
 var onEachFeature_bindPopup = function(feature, layer) {
@@ -307,29 +330,7 @@ var setSlide7 = function(dataset) {
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
       filter: finalFilter,
-      pointToLayer: function (feature, latlng) {
-        if (feature.properties.FEATURE == 'EQUESTRIAN'){
-          return L.circleMarker(latlng, equestrianMarkers);
-        }
-        if (feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-            feature.properties.FEATURE == 'HISTORIC SITE'){
-          return L.circleMarker(latlng, sightseeingMarkers);
-        }
-        if (feature.properties.FEATURE == 'BOATING' ||
-            feature.properties.FEATURE == 'CANOEING' ||
-            feature.properties.FEATURE == 'FISHING'){
-          return L.circleMarker(latlng, waterMarkers);
-        }
-        if (feature.properties.FEATURE == 'HIKING TRAIL'){
-          return L.circleMarker(latlng, hikingMarkers);
-        }
-        if (feature.properties.FEATURE == 'CAMPGROUND' ||
-            feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-            feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-            feature.properties.FEATURE == 'PICNIC SITE'){
-          return L.circleMarker(latlng, campingMarkers);
-        }
-    },
+      pointToLayer: pointToLayer_compare,
       onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
