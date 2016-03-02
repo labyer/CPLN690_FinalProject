@@ -110,21 +110,27 @@ var finalFilter = function(feature, layer){
 
 
 //POINT TO lAYER FUNCTIONS
+//slide 1 filter - intro
 var pointToLayer_all = function (feature, latlng) {
   return L.circleMarker(latlng, allMarkers);
 };
+//slide 2 filter - horseback riding
 var pointToLayer_equestrian = function (feature, latlng) {
   return L.circleMarker(latlng, equestrianMarkers);
 };
+//slide 3 filter - sightseeing
 var pointToLayer_sightseeing = function (feature, latlng) {
   return L.circleMarker(latlng, sightseeingMarkers);
 };
+//slide 4 filter - water activities
 var pointToLayer_water = function (feature, latlng) {
   return L.circleMarker(latlng, waterMarkers);
 };
+//slide 5 filter - hiking
 var pointToLayer_hiking = function (feature, latlng) {
   return L.circleMarker(latlng, hikingMarkers);
 };
+//slide 6 filter - Camping
 var pointToLayer_camping = function (feature, latlng) {
   return L.circleMarker(latlng, campingMarkers);
 };
