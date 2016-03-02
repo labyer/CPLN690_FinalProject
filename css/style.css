@@ -13,10 +13,23 @@ h2 {
   font-size: 32px;
 }
 
+h3 {
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 24px;
+  color: #d1d6d8;
+  padding-left: 10px;
+}
 
 p.main {
   font-family: 'garamond';
   font-size: 20px;
+}
+
+.legend-elements {
+  font-family: 'garamond';
+  font-size: 20px;
+  color: #d1d6d8;
+  text-indent: 55px;
 }
 
 .map {
@@ -40,28 +53,69 @@ p.main {
     color: #d1d6d8;
 }
 
-.legend {
-  position: absolute;
-  background-color: #fff;
-  z-index: 2000;
-  font-size: 18px;
-  border: 1px solid black;
-  padding: 10px;
-  left: 45%;
-  top: 1%;
+
+
+.circle-icon-equestrian {
+  position:absolute;
+  left: 8%;
+  top: 26%;
+  background: #a75700;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.circle-icon-sightseeing {
+  position:absolute;
+  left: 8%;
+  top: 39.5%;
+  background: #d97100;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+
+.circle-icon-water {
+  position:absolute;
+  left: 8%;
+  top: 54.5%;
+  background: #ff8500;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.circle-icon-hiking {
+  position:absolute;
+  left: 8%;
+  top: 69.5%;
+  background: #ffba70;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.circle-icon-camping {
+  position:absolute;
+  left: 8%;
+  top: 84.5%;
+  background: #ffd3a4;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }
 
 .button-previous {
     position: absolute;
     left: 2%;
-    top: 60%;
-    background-color: #27586b;
+    top: 40%;
+    background-color: #006388;
     border: none;
     color: #d1d6d8;
     width: 120px;
     padding: 10px;
     text-align: center;
-    text-decoration: none;
     font-size: 26px;
     font-family: 'Pathway Gothic One', sans-serif;
     border-radius: 3px;
@@ -71,15 +125,14 @@ p.main {
 .button-next-1 {
     position: absolute;
     left: 2%;
-    top: 60%;
+    top: 40%;
     width:120px;
-    background-color: #27586b;
+    background-color: #006388;
     border: none;
     color: #d1d6d8;
     width: 120px;
     padding: 10px;
     text-align: center;
-    text-decoration: none;
     font-size: 26px;
     font-family: 'Pathway Gothic One', sans-serif;
     border-radius: 3px;
@@ -88,14 +141,13 @@ p.main {
 .button-next-rest {
     position: absolute;
     left: 15%;
-    top: 60%;
+    top: 40%;
     width: 120px;
     padding: 10px;
-    background-color: #27586b;
+    background-color: #006388;
     border: none;
     color: #d1d6d8;
     text-align: center;
-    text-decoration: none;
     font-size: 26px;
     font-family: 'Pathway Gothic One', sans-serif;
     border-radius: 3px;
@@ -104,4 +156,18 @@ p.main {
 td {
   min-width: 50px;
   padding: 5px;
+}
+
+
+
+.legend-style {
+  position:absolute;
+  left: 37%;
+  top: 1%;
+  min-width: 240px;
+  min-height: 200px;
+  background-color: #161819;
+  border:1px solid #000;
+  padding: 0px 7px;
+  border-radius: 10px;
 }
