@@ -24,19 +24,6 @@ var campingText = 'The final category features camping and picnic sites througho
 var finalText = 'Here is a breakdown of each category. Feel free to look through the previous pages again, or click on one of the circles to see the name of the attraction.';
 
 
-//make variable to store markers
-var markers;
-
-// determine latlng (needed for pointToLayer within L.geoJson for each slide - helped with L.circleMarker)
-var latlng = $.ajax(dataset).done(function(data) {
-  var x = JSON.parse(data);
-  var y = L.geoJson(x, {
-    onEachFeature: function(feature, layer) {
-      coords.push(feature.geometry.coordinates);
-    }
-  });
-});
-
 //style for the markers for each slide
 var allMarkers =  {
    radius: 10,
@@ -76,6 +63,9 @@ var campingMarkers =  {
    fillOpacity: 0.75
 };
 
+
+//make global variable to store markers
+var markers;
 
 //set the functions to create each slide
 // slide 1 - intro
