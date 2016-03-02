@@ -24,9 +24,10 @@ var campingText = 'The final category features camping and picnic sites througho
 var finalText = 'Here is a breakdown of each category. Feel free to look through the previous pages again, or click on one of the circles to see the name of the attraction.';
 
 
-
+//make variable to store markers
 var markers;
-var coords = [];
+
+// determine latlng (needed for pointToLayer within L.geoJson for each slide - helped with L.circleMarker)
 var latlng = $.ajax(dataset).done(function(data) {
   var x = JSON.parse(data);
   var y = L.geoJson(x, {
@@ -36,20 +37,19 @@ var latlng = $.ajax(dataset).done(function(data) {
   });
 });
 
+//style for the markers for each slide
 var allMarkers =  {
    radius: 10,
    fillColor: '#006388',
    weight: 0,
    fillOpacity: 0.75
 };
-
 var equestrianMarkers =  {
    radius: 10,
    fillColor: "#a75700",
    weight: 0,
    fillOpacity: 0.75
 };
-
 var sightseeingMarkers =  {
    radius: 10,
    fillColor: "#d97100",
@@ -63,14 +63,12 @@ var waterMarkers =  {
    weight: 0,
    fillOpacity: 0.75
 };
-
 var hikingMarkers =  {
    radius: 10,
    fillColor: "#ffba70",
    weight: 0,
    fillOpacity: 0.75
 };
-
 var campingMarkers =  {
    radius: 10,
    fillColor: "#ffd3a4",
@@ -78,8 +76,9 @@ var campingMarkers =  {
    fillOpacity: 0.75
 };
 
-// var latlng = L.latlng(features.geometry.coordinates);
 
+//set the functions to create each slide
+// slide 1 - intro
 var setSlide1 = function(dataset){
   document.getElementById('previous-button').className = '';
   document.getElementById('next-button').className = 'button-next-1';
@@ -104,7 +103,7 @@ var setSlide1 = function(dataset){
   });
 };
 
-
+//slide 2 - horseback riding
 var setSlide2 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = 'button-next-rest';
@@ -137,6 +136,7 @@ var setSlide2 = function(dataset) {
   });
 };
 
+//slide 3 - sightseeing
 var setSlide3 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = 'button-next-rest';
@@ -170,6 +170,7 @@ var setSlide3 = function(dataset) {
   });
 };
 
+//slide 4 - water activities
 var setSlide4 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = 'button-next-rest';
@@ -204,6 +205,7 @@ var setSlide4 = function(dataset) {
   });
 };
 
+//slide 5 - hiking trails
 var setSlide5 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = 'button-next-rest';
@@ -236,6 +238,7 @@ var setSlide5 = function(dataset) {
   });
 };
 
+//slide 6 - camping & picnics
 var setSlide6 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = 'button-next-rest';
@@ -271,6 +274,7 @@ var setSlide6 = function(dataset) {
   });
 };
 
+//slide 7 - final comparison slide
 var setSlide7 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
   document.getElementById('next-button').className = '';
@@ -329,6 +333,7 @@ var setSlide7 = function(dataset) {
   });
 };
 
+//run it!
 $(document).ready(function() {
   setSlide1(dataset);
 });
@@ -336,10 +341,7 @@ $(document).ready(function() {
 
 
 
-/* =====================
-Leaflet Configuration
-===================== */
-
+//make map
 var map = L.map('map', {
   center: [43.061485, -75.975287],
   zoom: 7
