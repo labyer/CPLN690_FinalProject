@@ -1,73 +1,144 @@
 
-
+//SET DATASET
+//NYS outdoor activities
 var dataset = 'https://raw.githubusercontent.com/labyer/midterm/master/NYSDestinations_5.geojson';
 
-//intro text
+//INFORMATIONAL TEXT
+//slide 1 - intro text
 var introText = 'New York offers numerous outdoor attractions at many locations throughout the State. Click through the slides to view the locations of various outdoor activities.';
-
-//equestrian text
+//slide 2 - horseback riding text
 var equestrianText = 'These locations feature horseback riding and supply riders with miles of beautiful trails.';
-
-//sighseeing text
+//slide 3 - sighseeing text
 var sightseeingText = 'The various sightseeing opportunities are at these locations on the map. These include both historic sites and nature obervations.';
-
-//water activities text
+//slide 4 - water activities text
 var waterText = 'The mapped locations represent the canoeing, boating, and fishing opportunities.';
-
-//hiking text
+//slide 5 - hiking text
 var hikingText = 'Anyone looking for hiking opportunities should consider these options.';
-
-//camping & picnics text
+//slide 6 - camping & picnics text
 var campingText = 'The final category features camping and picnic sites throughout the State.';
-
-//final text
+//slide 7 - final text
 var finalText = 'Here is a breakdown of each category. Feel free to look through the previous pages again, or click on one of the circles to see the name of the attraction.';
 
 
-//style for the markers for each slide
+//MARKER STYLES
+//slide 1 - all markers
 var allMarkers =  {
    radius: 10,
    fillColor: '#006388',
    weight: 0,
    fillOpacity: 0.75
 };
+//slide 2 - horseback riding markers
 var equestrianMarkers =  {
    radius: 10,
    fillColor: "#a75700",
    weight: 0,
    fillOpacity: 0.75
 };
+//slide 3 - sightseeing markers
 var sightseeingMarkers =  {
    radius: 10,
    fillColor: "#d97100",
    weight: 0,
    fillOpacity: 0.75
 };
-
+//slide 4 - water activities markers
 var waterMarkers =  {
    radius: 10,
    fillColor: "#ff8500",
    weight: 0,
    fillOpacity: 0.75
 };
+//slide 5 - hiking markers
 var hikingMarkers =  {
    radius: 10,
    fillColor: "#ffba70",
    weight: 0,
    fillOpacity: 0.75
 };
+//slide 6 - camping markers
 var campingMarkers =  {
    radius: 10,
    fillColor: "#ffd3a4",
    weight: 0,
    fillOpacity: 0.75
 };
+//slide 7 is a combo of the styles make for slides 2 - 6
 
 
+//FILTER FUNCTIONS
+//slide 2 filters - horseback riding
+var equestrianFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'EQUESTRIAN';
+};
+//slide 3 filters - sightseeing
+var sightseeingFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'NATURE OBSERVATION' ||
+         feature.properties.FEATURE == 'HISTORIC SITE' ;
+};
+//slide 4 filter - water activities
+var waterFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'CANOEING' ||
+         feature.properties.FEATURE == 'BOATING' ||
+         feature.properties.FEATURE == 'FISHING';
+};
+//slide 5 filter - hiking trails
+var hikingFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'HIKING TRAIL';
+};
+//slide 6 filter - Camping
+var campingFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'CAMPGROUND' ||
+         feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
+         feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
+         feature.properties.FEATURE == 'PICNIC SITE';
+};
+//slide 7 filter - all
+var finalFilter = function(feature, layer){
+  return feature.properties.FEATURE == 'EQUESTRIAN' ||
+         feature.properties.FEATURE == 'NATURE OBSERVATION' ||
+         feature.properties.FEATURE == 'BOATING' ||
+         feature.properties.FEATURE == 'HIKING TRAIL' ||
+         feature.properties.FEATURE == 'CAMPGROUND' ||
+         feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
+         feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
+         feature.properties.FEATURE == 'PICNIC SITE' ||
+         feature.properties.FEATURE == 'HISTORIC SITE' ||
+         feature.properties.FEATURE == 'CANOEING' ||
+         feature.properties.FEATURE == 'FISHING';
+};
+
+
+//POINT TO lAYER FUNCTIONS
+var pointToLayer_all = function (feature, latlng) {
+  return L.circleMarker(latlng, allMarkers);
+};
+var pointToLayer_equestrian = function (feature, latlng) {
+  return L.circleMarker(latlng, equestrianMarkers);
+};
+var pointToLayer_sightseeing = function (feature, latlng) {
+  return L.circleMarker(latlng, sightseeingMarkers);
+};
+var pointToLayer_water = function (feature, latlng) {
+  return L.circleMarker(latlng, waterMarkers);
+};
+var pointToLayer_hiking = function (feature, latlng) {
+  return L.circleMarker(latlng, hikingMarkers);
+};
+var pointToLayer_camping = function (feature, latlng) {
+  return L.circleMarker(latlng, campingMarkers);
+};
+
+
+//ON EACH FEATURE FUNCTION
+var onEachFeature_bindPopup = function(feature, layer) {
+  layer.bindPopup(feature.properties.NAME);
+};
+
+
+//FUNCTIONS TO CREATE SLIDES
 //make global variable to store markers
 var markers;
-
-//set the functions to create each slide
 // slide 1 - intro
 var setSlide1 = function(dataset){
   document.getElementById('previous-button').className = '';
@@ -78,12 +149,8 @@ var setSlide1 = function(dataset){
   $.ajax(dataset).done(function(data) {
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, allMarkers);
-      },
-      onEachFeature: function(feature, layer) {
-        layer.bindPopup(feature.properties.NAME);
-      }
+      pointToLayer: pointToLayer_all,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -92,7 +159,6 @@ var setSlide1 = function(dataset){
     setSlide2(dataset);
   });
 };
-
 //slide 2 - horseback riding
 var setSlide2 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -104,15 +170,9 @@ var setSlide2 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'EQUESTRIAN';
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, equestrianMarkers);
-    },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      filter: equestrianFilter,
+      pointToLayer: pointToLayer_equestrian,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -125,7 +185,6 @@ var setSlide2 = function(dataset) {
     setSlide1(dataset);
   });
 };
-
 //slide 3 - sightseeing
 var setSlide3 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -137,16 +196,9 @@ var setSlide3 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-               feature.properties.FEATURE == 'HISTORIC SITE' ;
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, sightseeingMarkers);
-    },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      filter: sightseeingFilter,
+      pointToLayer: pointToLayer_sightseeing,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -159,7 +211,6 @@ var setSlide3 = function(dataset) {
     setSlide2(dataset);
   });
 };
-
 //slide 4 - water activities
 var setSlide4 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -171,17 +222,9 @@ var setSlide4 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'BOATING' ||
-               feature.properties.FEATURE == 'CANOEING' ||
-               feature.properties.FEATURE == 'FISHING';
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, waterMarkers);
-    },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      filter: waterFilter,
+      pointToLayer: pointToLayer_water,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -194,7 +237,6 @@ var setSlide4 = function(dataset) {
     setSlide3(dataset);
   });
 };
-
 //slide 5 - hiking trails
 var setSlide5 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -206,15 +248,9 @@ var setSlide5 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'HIKING TRAIL';
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, hikingMarkers);
-    },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      filter: hikingFilter,
+      pointToLayer: pointToLayer_hiking,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -227,7 +263,6 @@ var setSlide5 = function(dataset) {
     setSlide4(dataset);
   });
 };
-
 //slide 6 - camping & picnics
 var setSlide6 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -239,18 +274,9 @@ var setSlide6 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'CAMPGROUND' ||
-               feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-               feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-               feature.properties.FEATURE == 'PICNIC SITE';
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, campingMarkers);
-    },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      filter: campingFilter,
+      pointToLayer: pointToLayer_camping,
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -263,7 +289,6 @@ var setSlide6 = function(dataset) {
     setSlide5(dataset);
   });
 };
-
 //slide 7 - final comparison slide
 var setSlide7 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
@@ -275,19 +300,7 @@ var setSlide7 = function(dataset) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: function(feature, layer){
-        return feature.properties.FEATURE == 'EQUESTRIAN' ||
-               feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-               feature.properties.FEATURE == 'BOATING' ||
-               feature.properties.FEATURE == 'HIKING TRAIL' ||
-               feature.properties.FEATURE == 'CAMPGROUND' ||
-               feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-               feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-               feature.properties.FEATURE == 'PICNIC SITE' ||
-               feature.properties.FEATURE == 'HISTORIC SITE' ||
-               feature.properties.FEATURE == 'CANOEING' ||
-               feature.properties.FEATURE == 'FISHING';
-      },
+      filter: finalFilter,
       pointToLayer: function (feature, latlng) {
         if (feature.properties.FEATURE == 'EQUESTRIAN'){
           return L.circleMarker(latlng, equestrianMarkers);
@@ -311,9 +324,7 @@ var setSlide7 = function(dataset) {
           return L.circleMarker(latlng, campingMarkers);
         }
     },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup(feature.properties.NAME);
-      }
+      onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
@@ -323,7 +334,8 @@ var setSlide7 = function(dataset) {
   });
 };
 
-//run it!
+
+//RUN IT!
 $(document).ready(function() {
   setSlide1(dataset);
 });
