@@ -32,6 +32,10 @@ p.main {
   text-indent: 55px;
 }
 
+.content {
+  min-height: 130px;
+}
+
 .map {
     position: absolute;
     right: 0px;
@@ -49,6 +53,7 @@ p.main {
     overflow-y: auto;
     padding: 20px;
     font-size: 16px;
+    min-height: 130px;
     background-color: #081419;
     color: #d1d6d8;
 }
@@ -106,15 +111,44 @@ p.main {
   border-radius: 50%;
 }
 
+.leaflet-popup-content-wrapper {
+  background: #081419;
+  font-size: 20px;
+  font-family: 'Pathway Gothic One', sans-serif;
+  border-radius: 3px;
+  color: #d1d6d8;
+}
+
+.leaflet-popup-tip {
+  width:10px;
+  height:15px;
+  background: #081419;
+}
+
+.button-section {
+    position: absolute;
+    left: 0;
+    right: 70%;
+    height: 600px;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 20px;
+    font-size: 16px;
+    min-height: 130px;
+    background-color: #081419;
+    color: #d1d6d8;
+}
+
+
 .button-previous {
-    position: absolute;
-    left: 2%;
-    top: 40%;
+    position: fixed;
+    bottom: 540px;
+    left: 25px;
     background-color: #006388;
     border: none;
     color: #d1d6d8;
     width: 120px;
-    padding: 10px;
+    padding: 10px 20px;
     text-align: center;
     font-size: 26px;
     font-family: 'Pathway Gothic One', sans-serif;
@@ -122,26 +156,11 @@ p.main {
 }
 
 
-.button-next-1 {
-    position: absolute;
-    left: 2%;
-    top: 40%;
-    width:120px;
-    background-color: #006388;
-    border: none;
-    color: #d1d6d8;
-    width: 120px;
-    padding: 10px;
-    text-align: center;
-    font-size: 26px;
-    font-family: 'Pathway Gothic One', sans-serif;
-    border-radius: 3px;
-}
 
-.button-next-rest {
-    position: absolute;
-    left: 15%;
-    top: 40%;
+.button-next {
+    position: fixed;
+    bottom: 540px;
+    left: 160px;
     width: 120px;
     padding: 10px;
     background-color: #006388;
@@ -152,6 +171,7 @@ p.main {
     font-family: 'Pathway Gothic One', sans-serif;
     border-radius: 3px;
 }
+
 
 td {
   min-width: 50px;

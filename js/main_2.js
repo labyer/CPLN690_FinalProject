@@ -171,7 +171,11 @@ var markers;
 // slide 1 - intro
 var setSlide1 = function(dataset){
   document.getElementById('previous-button').className = '';
-  document.getElementById('next-button').className = 'button-next-1';
+  // $('#previous-button').className = '';
+  // if I replace document.getElementById with the aobve line, the previous button does not disappear after clicking the next button and then going back to this slide
+  document.getElementById('next-button').className = 'button-next';
+  // $('#next-button').className='button-next';
+  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
   $('#attraction-feature').text('');
   $('#info').text(introText);
   $('#final-legend').hide();
@@ -186,12 +190,16 @@ var setSlide1 = function(dataset){
   $('#next-button').off();
   $('#next-button').on('click', function(){
     setSlide2(dataset);
+    map.fitBounds(this.getBounds());
   });
 };
 //slide 2 - horseback riding
 var setSlide2 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
-  document.getElementById('next-button').className = 'button-next-rest';
+  // $('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
+  //document.getElementById('next-button').className = 'button-next';
+  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
   $('#attraction-feature').text('Horseback Riding');
   $('#info').text(equestrianText);
   $('#final-legend').hide();
@@ -217,7 +225,10 @@ var setSlide2 = function(dataset) {
 //slide 3 - sightseeing
 var setSlide3 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
-  document.getElementById('next-button').className = 'button-next-rest';
+  // $('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
+  //document.getElementById('next-button').className = 'button-next';
+  // able to take the above line out completely as long as I leave the exact same line of code in the setSlide6 function
   $('#attraction-feature').text('Sightseeing');
   $('#info').text(sightseeingText);
   $('#final-legend').hide();
@@ -243,7 +254,10 @@ var setSlide3 = function(dataset) {
 //slide 4 - water activities
 var setSlide4 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
-  document.getElementById('next-button').className = 'button-next-rest';
+  // $('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
+  //document.getElementById('next-button').className = 'button-next';
+  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
   $('#attraction-feature').text('Water Activities');
   $('#info').text(waterText);
   $('#final-legend').hide();
@@ -269,7 +283,10 @@ var setSlide4 = function(dataset) {
 //slide 5 - hiking trails
 var setSlide5 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
-  document.getElementById('next-button').className = 'button-next-rest';
+  // $('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
+  //document.getElementById('next-button').className = 'button-next';
+  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
   $('#attraction-feature').text('Hiking Trails');
   $('#info').text(hikingText);
   $('#final-legend').hide();
@@ -295,7 +312,12 @@ var setSlide5 = function(dataset) {
 //slide 6 - camping & picnics
 var setSlide6 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
-  document.getElementById('next-button').className = 'button-next-rest';
+  // $('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
+  document.getElementById('next-button').className = 'button-next';
+  //if I take away either the document.getElementById version then the next button doesnt show up anymore on any of the slide after getting to the final slide and pressing the previous button to backtrack through the slides
+  // $('#next-button').className = 'button-next';
+  // the $('#next-button') version on the line above does not sufficiently replace document.getElementById version, the same thing happens and the next button wont show up after click through the entire slideshow
   $('#attraction-feature').text('Camping & Picnics');
   $('#info').text(campingText);
   $('#final-legend').hide();
@@ -321,7 +343,11 @@ var setSlide6 = function(dataset) {
 //slide 7 - final comparison slide
 var setSlide7 = function(dataset) {
   document.getElementById('previous-button').className = 'button-previous';
+  //$('#previous-button').className = 'button-previous';
+  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
   document.getElementById('next-button').className = '';
+  //  $('#next-button').className = '';
+  // if I use the above line for the next button instead of document.getElementById, the next button does not disappear on the final slide
   $('#attraction-feature').text('');
   $('#info').text(finalText);
   $('#final-legend').show();
