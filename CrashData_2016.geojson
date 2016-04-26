@@ -1,0 +1,252 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-11",
+        "FatalityDate": "2016-01-02",
+        "Time": "17:23:00",
+        "PrincipalStreet": "7300ThouronAve",
+        "Sex": "F",
+        "Age": 72,
+        "Type": "Auto_Ped",
+        "Day": "Friday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.15679746866226,
+          40.064481527498614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-01-06",
+        "FatalityDate": "2016-01-06",
+        "Time": "06:40:00",
+        "PrincipalStreet": "BustletonAve",
+        "IntersectingStreet": "MowerSt",
+        "Sex": "M",
+        "Age": 92,
+        "Type": "Auto_Ped",
+        "Day": "Wednesday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.04818946123123,
+          40.07236568280004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-01-21",
+        "FatalityDate": "2016-01-22",
+        "Time": "17:29:00",
+        "PrincipalStreet": "ColumbusBlvd",
+        "Sex": "M",
+        "Age": 36,
+        "Type": "Auto_Ped",
+        "Day": "Thursday",
+        "IntersectingStreet": "TaskerSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.14488577842712,
+          39.927386493936226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-02-01",
+        "FatalityDate": "2016-02-01",
+        "Time": "18:08:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 24,
+        "Type": "Auto_Ped",
+        "Day": "Monday",
+        "IntersectingStreet": "HarbisonSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.06425857543945,
+          40.03642082118293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-02-07",
+        "FatalityDate": "2016-02-07",
+        "Time": "21:00:00",
+        "PrincipalStreet": "10600BustletonAve",
+        "Sex": "F",
+        "Age": 41,
+        "Type": "Auto_Ped",
+        "Day": "Sunday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.02569913864136,
+          40.10914497307251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-02-18",
+        "FatalityDate": "2016-02-18",
+        "Time": "08:28:00",
+        "PrincipalStreet": "MLK",
+        "Sex": "M",
+        "Age": 23,
+        "Type": "Auto_Auto",
+        "Day": "Thursday",
+        "IntersectingStreet": "SweetBriarDr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.19820809364317,
+          39.977268085612586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FatalityDate": "2016-02-26",
+        "CrashDate": "2016-02-26",
+        "Time": "17:00:00",
+        "PrincipalStreet": "8700StentonAve",
+        "Sex": "M",
+        "Age": 39,
+        "Type": "Auto_Ped",
+        "Day": "Friday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.20422160625458,
+          40.081765539514855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-03-04",
+        "FatalityDate": "2016-03-06",
+        "Time": "17:00:00",
+        "PrincipalStreet": "9thSt",
+        "Sex": "F",
+        "Age": 33,
+        "Type": "Auto_Ped",
+        "Day": "Friday",
+        "IntersectingStreet": "WhartonAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.15910685062408,
+          39.933026211976426
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-03-09",
+        "FatalityDate": "2016-03-09",
+        "Time": "01:30:00",
+        "PrincipalStreet": "2ndSt",
+        "Sex": "M",
+        "Age": 40,
+        "Type": "Auto_Auto",
+        "Day": "Wednesday",
+        "IntersectingStreet": "CecilBMooreAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.13811588287354,
+          39.976166395637655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-03-15",
+        "FatalityDate": "2016-03-15",
+        "Time": "06:00:00",
+        "PrincipalStreet": "4900FrankfordAve",
+        "Sex": "F",
+        "Age": 43,
+        "Type": "Bus_Bike",
+        "Day": "Tuesday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.08127450942993,
+          40.019365636561545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-03-25",
+        "FatalityDate": "2016-03-25",
+        "Time": "20:30:00",
+        "PrincipalStreet": "7300LindburghBlvd",
+        "Sex": "M",
+        "Age": 64,
+        "Type": "Auto_Ped",
+        "Day": "Friday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.23408532142639,
+          39.90758004027604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2016-03-29",
+        "FatalityDate": "2016-03-29",
+        "Time": "09:30:00",
+        "PrincipalStreet": "TysonAve",
+        "Sex": "M",
+        "Age": 67,
+        "Type": "Auto_Ped",
+        "IntersectingStreet": "SackettSt",
+        "Day": "Tuesday"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.05139470100403,
+          40.036256533388645
+        ]
+      }
+    }
+  ]
+}
