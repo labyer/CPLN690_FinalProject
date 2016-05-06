@@ -499,6 +499,153 @@
           39.99436666737265
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-27",
+        "FatalityDate": "2015-10-27",
+        "Time": "17:08:00",
+        "PrincipalStreet": "CobbsCreekPkwy",
+        "Sex": "M",
+        "Age": 51,
+        "Type": "Auto_Auto",
+        "Day": "Tuesday",
+        "IntersectingStreet": "WhitebyAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.23657441139221,
+          39.940360029832874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FatalityDate": "2015-10-23",
+        "CrashDate": "2015-10-23",
+        "Time": "05:40:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 80,
+        "Type": "Auto_Fixed",
+        "Day": "Friday",
+        "IntersectingStreet": "9900Block"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.01679420471191,
+          40.09351969131154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-18",
+        "FatalityDate": "2015-10-18",
+        "Time": "16:30:00",
+        "PrincipalStreet": "MartinsMillRd",
+        "Sex": "M",
+        "Age": 79,
+        "Type": "Bus_Auto",
+        "Day": "Sunday",
+        "IntersectingStreet": "RisingSunBlvd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.09214282035828,
+          40.053176097063826
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-18",
+        "FatalityDate": "2015-10-18",
+        "Time": "14:15:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 66,
+        "Type": "Auto_Ped",
+        "Day": "Sunday",
+        "IntersectingStreet": "425E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.11640071868896,
+          40.026965414599744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-17",
+        "FatalityDate": "2015-10-17",
+        "Time": "20:23:00",
+        "PrincipalStreet": "StateRd",
+        "Sex": "M",
+        "Age": 64,
+        "Type": "Auto_Ped",
+        "Day": "Saturday",
+        "IntersectingStreet": "9300Block"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9928367137909,
+          40.04690156430334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-05",
+        "FatalityDate": "2015-10-05",
+        "Time": "19:13:00",
+        "PrincipalStreet": "ArrotSt",
+        "Sex": "M",
+        "Age": 34,
+        "Type": "Bus_Auto",
+        "Day": "Monday",
+        "IntersectingStreet": "PennSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.08552312850952,
+          40.01747583060862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-10-01",
+        "FatalityDate": "2015-10-01",
+        "Time": "22:41:00",
+        "PrincipalStreet": "BSt",
+        "Sex": "M",
+        "Age": 56,
+        "Type": "Auto_Bike",
+        "Day": "Thursday",
+        "IntersectingStreet": "3200Block"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.12524127960205,
+          39.99868173875551
+        ]
+      }
     }
   ]
 }
