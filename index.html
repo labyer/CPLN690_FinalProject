@@ -6,44 +6,110 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
     <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
       <div id="intro">
-        <h1>New York State Outdoor Attractions</h1>
-        <h2 id='attraction-feature'></h2>
-        <p id='info' class="main"></p>
+        <h1>2016 Philadelphia Crash Fatalities</h1>
+        <h4 id='filter-heading'></h4>
+        <p id='info' class="main">This map represents Philadelphia deaths resulting from crashes. You can filter through the deaths by the victim's gender, day of the week of the crash, or the type of crash. You can also click on individual points to view additional details about the crash and the victim.</p>
       </div>
+      <form action="" id='gender-form' class='gender-radial'>
+        <input type='radio' name='gender' id='gender-radial-F'>Female<br><br>
+        <input type='radio' name='gender' id='gender-radial-M'>Male<br><br>
+        <input type='radio' name='gender' id='gender-radial-all'>Compare All<br>
+      </form>
+      <form action=""id='day-form' class='day-radial'>
+        <input type='radio' name='day' id='day-radial-mon'>Monday<br><br>
+        <input type='radio' name='day' id='day-radial-tue'>Tuesday<br><br>
+        <input type='radio' name='day' id='day-radial-wed'>Wednesday<br><br>
+        <input type='radio' name='day' id='day-radial-thu'>Thursday<br><br>
+        <input type='radio' name='day' id='day-radial-fri'>Friday<br><br>
+        <input type='radio' name='day' id='day-radial-sat'>Saturday<br><br>
+        <input type='radio' name='day' id='day-radial-sun'>Sunday<br><br>
+        <input type='radio' name='day' id='day-radial-all'>Compare All<br>
+      </form>
+      <form action=""id='type-form' class='type-radial'>
+        <input type='radio' name='type' id='type-radial-auto-ped'>Auto/Pedestrian<br><br>
+        <input type='radio' name='type' id='type-radial-auto-bike'>Auto/Bicycle<br><br>
+        <input type='radio' name='type' id='type-radial-auto-auto'>Auto/Auto<br><br>
+        <input type='radio' name='type' id='type-radial-auto-fixed'>Auto(solo)<br><br>
+        <input type='radio' name='type' id='type-radial-bus-ped'>Bus/Pedestrian<br><br>
+        <input type='radio' name='type' id='type-radial-bus-bike'>Bus/Bicycle<br><br>
+        <input type='radio' name='type' id='type-radial-bus-auto'>Bus/Auto<br><br>
+        <input type='radio' name='type' id='type-radial-truck-ped'>Truck/Pedestrian<br><br>
+        <input type='radio' name='type' id='type-radial-truck-bike'>Truck/Bicycle<br><br>
+        <input type='radio' name='type' id='type-radial-atv'>ATV<br><br>
+        <input type='radio' name='type' id='type-radial-all'>Compare All<br>
+      </form>
     </div>
-    <div class='button-section'>
-      <button id='previous-button'>PREVIOUS</button>
-      <button id='next-button'>NEXT</button>
+    <div class='filter-section'>
+      <button id='reset-map-zoom-button'>Reset Map Zoom</button>
+      <button id='reset-original-map-button'>Back to Original Map</button>
+      <button id='filter-button'>FILTER</button>
+      <button id='all-gender-filter-button'>Gender</button>
+      <button id='all-day-filter-button'>Day of Week</button>
+      <button id='all-type-filter-button'>Crash Type</button>
     </div>
-    <!--I tried to alter the positioning with the code above but that results is some other button issues, including the previous and nexts buttons showing up unformatted on the first slide and last slide, respectively-->
-    <!-- <button id='previous-button'>PREVIOUS</button>
-    <button id='next-button'>NEXT</button> -->
-
-
         <!-- Map -->
     <div id="map" class="map"></div>
-    <legend id='final-legend' class = 'legend-style'><h3>LEGEND</h3>
-      <p class='legend-elements'>Horseback Riding</p>
-      <p class='legend-elements'>Sightseeing</p>
-      <p class='legend-elements'>Water Activities</p>
-      <p class='legend-elements'>Hiking Trails</p>
-      <p class='legend-elements'>Camping & Picnics</p>
-      <i class='circle-icon-equestrian'></i>
-      <i class='circle-icon-sightseeing'></i>
-      <i class='circle-icon-water'></i>
-      <i class='circle-icon-hiking'></i>
-      <i class='circle-icon-camping'></i>
+    <!-- Information Bar -->
+    <div id='info-bar' class='info-bar-style'>
+      <div id="crash-info" class="main"></div>
+    </div>
+    <!-- Legend -->
+    <legend id='gender-legend' class = 'legend-style'>
+      <p class='legend-elements'>Female</p>
+      <p class='legend-elements'>Male</p>
+      <i class='circle-icon-F'></i>
+      <i class='circle-icon-M'></i>
+    </legend>
+    <legend id='day-legend' class = 'legend-style'>
+      <p class='legend-elements'>Monday</p>
+      <p class='legend-elements'>Tuesday</p>
+      <p class='legend-elements'>Wednesday</p>
+      <p class='legend-elements'>Thursday</p>
+      <p class='legend-elements'>Friday</p>
+      <p class='legend-elements'>Saturday</p>
+      <p class='legend-elements'>Sunday</p>
+      <i class='circle-icon-mon'></i>
+      <i class='circle-icon-tue'></i>
+      <i class='circle-icon-wed'></i>
+      <i class='circle-icon-thu'></i>
+      <i class='circle-icon-fri'></i>
+      <i class='circle-icon-sat'></i>
+      <i class='circle-icon-sun'></i>
+    </legend>
+    <legend id='type-legend' class = 'legend-style'>
+      <p class='legend-elements'>Auto/Pedestrian</p>
+      <p class='legend-elements'>Auto/Bicyle</p>
+      <p class='legend-elements'>Auto/Auto</p>
+      <p class='legend-elements'>Auto (solo)</p>
+      <p class='legend-elements'>Bus/Pedestrian</p>
+      <p class='legend-elements'>Bus/Bicycle</p>
+      <p class='legend-elements'>Bus/Auto</p>
+      <p class='legend-elements'>Truck/Pedestrian</p>
+      <p class='legend-elements'>Truck/Bicycle</p>
+      <p class='legend-elements'>ATV</p>
+      <i class='circle-icon-Auto-Ped'></i>
+      <i class='circle-icon-Auto-Bike'></i>
+      <i class='circle-icon-Auto-Auto'></i>
+      <i class='circle-icon-Auto-Fixed'></i>
+      <i class='circle-icon-Bus-Ped'></i>
+      <i class='circle-icon-Bus-Bike'></i>
+      <i class='circle-icon-Bus-Auto'></i>
+      <i class='circle-icon-Truck-Ped'></i>
+      <i class='circle-icon-Truck-Bike'></i>
+      <i class='circle-icon-ATV'></i>
     </legend>
 
     <!-- Javascript Imports -->
     <script src="js/jquery-2.2.0.js"></script>
     <script src="js/underscore.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/leaflet.js"></script>
     <!--<script src="js/main.js"></script>-->
     <script src="js/main_2.js"></script>

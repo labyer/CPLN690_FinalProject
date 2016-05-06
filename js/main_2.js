@@ -1,168 +1,420 @@
 
 //SET DATASET
-//NYS outdoor activities
-var dataset = 'https://raw.githubusercontent.com/labyer/midterm/master/NYSDestinations_5.geojson';
+//Philadelphia Crashes 2016
+var dataset = 'https://raw.githubusercontent.com/labyer/CPLN690_FinalProject/master/CrashData_2016.geojson';
+// var dataset = 'https://raw.githubusercontent.com/labyer/CPLN690_FinalProject/master/NYC_CrashData.geojson';
+var markers=[];
 
-//INFORMATIONAL TEXT
-//slide 1 - intro text
-var introText = 'New York offers numerous outdoor attractions at many locations throughout the State. Click through the slides to view the locations of various outdoor activities.';
-//slide 2 - horseback riding text
-var equestrianText = 'These locations feature horseback riding and supply riders with miles of beautiful trails.';
-//slide 3 - sighseeing text
-var sightseeingText = 'The various sightseeing opportunities are at these locations on the map. These include both historic sites and nature obervations.';
-//slide 4 - water activities text
-var waterText = 'The mapped locations represent the canoeing, boating, and fishing opportunities.';
-//slide 5 - hiking text
-var hikingText = 'Anyone looking for hiking opportunities should consider these options.';
-//slide 6 - camping & picnics text
-var campingText = 'The final category features camping and picnic sites throughout the State.';
-//slide 7 - final text
-var finalText = 'Here is a breakdown of each category. Feel free to look through the previous pages again, or click on one of the circles to see the name of the attraction.';
 
 
 //MARKER STYLES
-//slide 1 - all markers
+//all markers
 var allMarkers =  {
    radius: 10,
    fillColor: '#006388',
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 2 - horseback riding markers
-var equestrianMarkers =  {
+//gender markers - F
+var genderMarkers_F =  {
    radius: 10,
-   fillColor: "#a75700",
+   fillColor: "#ffb170",
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 3 - sightseeing markers
-var sightseeingMarkers =  {
+//gender markers - M
+var genderMarkers_M =  {
    radius: 10,
-   fillColor: "#d97100",
+   fillColor: "#39538d",
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 4 - water activities markers
-var waterMarkers =  {
+//day markers - Mon
+var dayMarkers_Mon =  {
    radius: 10,
-   fillColor: "#ff8500",
+   fillColor: "#ff7400",
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 5 - hiking markers
-var hikingMarkers =  {
+//day markers - Tue
+var dayMarkers_Tue =  {
    radius: 10,
-   fillColor: "#ffba70",
+   fillColor: "#1240ab",
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 6 - camping markers
-var campingMarkers =  {
+//day markers - Wed
+var dayMarkers_Wed =  {
    radius: 10,
-   fillColor: "#ffd3a4",
+   fillColor: "#46b2b2",
    weight: 0,
-   fillOpacity: 0.75
+   fillOpacity: 1
 };
-//slide 7 is a combo of the styles make for slides 2 - 6
+//day markers - Thu
+var dayMarkers_Thu =  {
+   radius: 10,
+   fillColor: "#ffae6b",
+   weight: 0,
+   fillOpacity: 1
+};
+//day markers - Fri
+var dayMarkers_Fri =  {
+   radius: 10,
+   fillColor: "#5f7ec6",
+   weight: 0,
+   fillOpacity: 1
+};
+//day markers - Sat
+var dayMarkers_Sat =  {
+   radius: 10,
+   fillColor: "#ffce6b",
+   weight: 0,
+   fillOpacity: 1
+};
+//day markers - Sun
+var dayMarkers_Sun =  {
+   radius: 10,
+   fillColor: "#4ebaba",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Auto_Ped
+var typeMarkers_Auto_Ped =  {
+   radius: 10,
+   fillColor: "#46b2b2",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Auto_Bike
+var typeMarkers_Auto_Bike =  {
+   radius: 10,
+   fillColor: "#1240ab",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Auto_Auto
+var typeMarkers_Auto_Auto =  {
+   radius: 10,
+   fillColor: "#ff7400",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Auto_Fixed
+var typeMarkers_Auto_Fixed =  {
+   radius: 10,
+   fillColor: "#ffae6b",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Bus_Ped
+var typeMarkers_Bus_Ped =  {
+   radius: 10,
+   fillColor: "#5f7ec6",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Bus_Bike
+var typeMarkers_Bus_Bike =  {
+   radius: 10,
+   fillColor: "#ffce6b",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Bus_Auto
+var typeMarkers_Bus_Auto =  {
+   radius: 10,
+   fillColor: "#4ebaba",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Truck_Ped
+var typeMarkers_Truck_Ped =  {
+   radius: 10,
+   fillColor: "#ffaa00",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - Truck_Bike
+var typeMarkers_Truck_Bike =  {
+   radius: 10,
+   fillColor: "#afa093",
+   weight: 0,
+   fillOpacity: 1
+};
+//type markers - ATV
+var typeMarkers_ATV =  {
+   radius: 10,
+   fillColor: "#777f7f",
+   weight: 0,
+   fillOpacity: 1
+};
+
+
+
+
 
 
 //FILTER FUNCTIONS
-//slide 2 filters - horseback riding
-var equestrianFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'EQUESTRIAN';
+//gender - F
+var genderFilter_F = function(feature, layer){
+  return feature.properties.Sex == 'F';
 };
-//slide 3 filters - sightseeing
-var sightseeingFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-         feature.properties.FEATURE == 'HISTORIC SITE' ;
+//gender - F
+var genderFilter_M = function(feature, layer){
+  return feature.properties.Sex == 'M';
 };
-//slide 4 filter - water activities
-var waterFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'CANOEING' ||
-         feature.properties.FEATURE == 'BOATING' ||
-         feature.properties.FEATURE == 'FISHING';
+//day - Monday
+var dayFilter_Mon = function(feature, layer){
+  return feature.properties.Day == 'Monday';
 };
-//slide 5 filter - hiking trails
-var hikingFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'HIKING TRAIL';
+//day - Monday
+var dayFilter_Tue = function(feature, layer){
+  return feature.properties.Day == 'Tuesday';
 };
-//slide 6 filter - Camping
-var campingFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'CAMPGROUND' ||
-         feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-         feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-         feature.properties.FEATURE == 'PICNIC SITE';
+//day - Monday
+var dayFilter_Wed = function(feature, layer){
+  return feature.properties.Day == 'Wednesday';
 };
-//slide 7 filter - all
-var finalFilter = function(feature, layer){
-  return feature.properties.FEATURE == 'EQUESTRIAN' ||
-         feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-         feature.properties.FEATURE == 'BOATING' ||
-         feature.properties.FEATURE == 'HIKING TRAIL' ||
-         feature.properties.FEATURE == 'CAMPGROUND' ||
-         feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-         feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-         feature.properties.FEATURE == 'PICNIC SITE' ||
-         feature.properties.FEATURE == 'HISTORIC SITE' ||
-         feature.properties.FEATURE == 'CANOEING' ||
-         feature.properties.FEATURE == 'FISHING';
+//day - Monday
+var dayFilter_Thu = function(feature, layer){
+  return feature.properties.Day == 'Thursday';
 };
+//day - Monday
+var dayFilter_Fri = function(feature, layer){
+  return feature.properties.Day == 'Friday';
+};
+//day - Monday
+var dayFilter_Sat = function(feature, layer){
+  return feature.properties.Day == 'Saturday';
+};
+//day - Monday
+var dayFilter_Sun = function(feature, layer){
+  return feature.properties.Day == 'Sunday';
+};
+//type - Auto_Ped
+var typeFilter_Auto_Ped = function(feature, layer){
+  return feature.properties.Type == 'Auto_Ped';
+};
+//type - Auto_Bike
+var typeFilter_Auto_Bike = function(feature, layer){
+  return feature.properties.Type == 'Auto_Bike';
+};
+//type - Auto_Auto
+var typeFilter_Auto_Auto = function(feature, layer){
+  return feature.properties.Type == 'Auto_Auto';
+};
+//type - Auto_Fixed
+var typeFilter_Auto_Fixed = function(feature, layer){
+  return feature.properties.Type == 'Auto_Fixed';
+};
+//type - Bus_Ped
+var typeFilter_Bus_Ped = function(feature, layer){
+  return feature.properties.Type == 'Bus_Ped';
+};
+//type - Bus_Bike
+var typeFilter_Bus_Bike = function(feature, layer){
+  return feature.properties.Type == 'Bus_Bike';
+};
+//type - Bus_Auto
+var typeFilter_Bus_Auto = function(feature, layer){
+  return feature.properties.Type == 'Bus_Auto';
+};
+//type - Truck_Ped
+var typeFilter_Truck_Ped = function(feature, layer){
+  return feature.properties.Type == 'Truck_Ped';
+};
+//type - Truck_Bike
+var typeFilter_Truck_Bike = function(feature, layer){
+  return feature.properties.Type == 'Truck_Bike';
+};
+//type - ATV
+var typeFilter_ATV = function(feature, layer){
+  return feature.properties.Type == 'ATV';
+};
+
+
+
 
 
 //POINT TO lAYER FUNCTIONS
-//slide 1 filter - intro
+// all markers
 var pointToLayer_all = function (feature, latlng) {
   return L.circleMarker(latlng, allMarkers);
 };
-//slide 2 filter - horseback riding
-var pointToLayer_equestrian = function (feature, latlng) {
-  return L.circleMarker(latlng, equestrianMarkers);
+//gender - F
+var pointToLayer_gender_F = function (feature, latlng) {
+  return L.circleMarker(latlng, genderMarkers_F);
 };
-//slide 3 filter - sightseeing
-var pointToLayer_sightseeing = function (feature, latlng) {
-  return L.circleMarker(latlng, sightseeingMarkers);
+//gender - F
+var pointToLayer_gender_M = function (feature, latlng) {
+  return L.circleMarker(latlng, genderMarkers_M);
 };
-//slide 4 filter - water activities
-var pointToLayer_water = function (feature, latlng) {
-  return L.circleMarker(latlng, waterMarkers);
+//day - Mon
+var pointToLayer_day_mon = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Mon);
 };
-//slide 5 filter - hiking
-var pointToLayer_hiking = function (feature, latlng) {
-  return L.circleMarker(latlng, hikingMarkers);
+//day - Tue
+var pointToLayer_day_tue = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Tue);
 };
-//slide 6 filter - Camping
-var pointToLayer_camping = function (feature, latlng) {
-  return L.circleMarker(latlng, campingMarkers);
+//day - Wed
+var pointToLayer_day_wed = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Wed);
+};
+//day - Thu
+var pointToLayer_day_thu = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Thu);
+};
+//day - Fri
+var pointToLayer_day_fri = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Fri);
+};
+//day - Sat
+var pointToLayer_day_sat = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Sat);
+};
+//day - Sun
+var pointToLayer_day_sun = function (feature, latlng) {
+  return L.circleMarker(latlng, dayMarkers_Sun);
+};
+//type - Auto_Ped
+var pointToLayer_type_Auto_Ped = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Auto_Ped);
+};
+//type - Auto_Bike
+var pointToLayer_type_Auto_Bike = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Auto_Bike);
+};
+//type - Auto_Auto
+var pointToLayer_type_Auto_Auto = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Auto_Auto);
+};
+//type - Auto_Fixed
+var pointToLayer_type_Auto_Fixed = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Auto_Fixed);
+};
+//type - Bus_Ped
+var pointToLayer_type_Bus_Ped = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Bus_Ped);
+};
+//type - Bus_Bike
+var pointToLayer_type_Bus_Bike = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Bus_Bike);
+};
+//type - Bus_Auto
+var pointToLayer_type_Bus_Auto = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Bus_Auto);
+};
+//type - Truck_Ped
+var pointToLayer_type_Truck_Ped = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Truck_Ped);
+};
+//type - Truck_Bike
+var pointToLayer_type_Truck_Bike = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_Truck_Bike);
+};
+//type - ATV
+var pointToLayer_type_ATV = function (feature, latlng) {
+  return L.circleMarker(latlng, typeMarkers_ATV);
+};
+//compare - gender
+var pointToLayer_compare_gender = function (feature, latlng) {
+  if (feature.properties.Sex == 'F'){
+    return L.circleMarker(latlng, genderMarkers_F);
+  }
+  if (feature.properties.Sex == 'M'){
+    return L.circleMarker(latlng, genderMarkers_M);
+  }
+};
+//compare - day
+var pointToLayer_compare_day = function (feature, latlng) {
+  if (feature.properties.Day == 'Monday'){
+    return L.circleMarker(latlng, dayMarkers_Mon);
+  }
+  if (feature.properties.Day == 'Tuesday'){
+    return L.circleMarker(latlng, dayMarkers_Tue);
+  }
+  if (feature.properties.Day == 'Wednesday'){
+    return L.circleMarker(latlng, dayMarkers_Wed);
+  }
+  if (feature.properties.Day == 'Thursday'){
+    return L.circleMarker(latlng, dayMarkers_Thu);
+  }
+  if (feature.properties.Day == 'Friday'){
+    return L.circleMarker(latlng, dayMarkers_Fri);
+  }
+  if (feature.properties.Day == 'Saturday'){
+    return L.circleMarker(latlng, dayMarkers_Sat);
+  }
+  if (feature.properties.Day == 'Sunday'){
+    return L.circleMarker(latlng, dayMarkers_Sun);
+  }
+};
+//compare - type
+var pointToLayer_compare_type = function (feature, latlng) {
+  if (feature.properties.Type == 'Auto_Ped'){
+    return L.circleMarker(latlng, typeMarkers_Auto_Ped);
+  }
+  if (feature.properties.Type == 'Auto_Bike'){
+    return L.circleMarker(latlng, typeMarkers_Auto_Bike);
+  }
+  if (feature.properties.Type == 'Auto_Auto'){
+    return L.circleMarker(latlng, typeMarkers_Auto_Auto);
+  }
+  if (feature.properties.Type == 'Auto_Fixed'){
+    return L.circleMarker(latlng, typeMarkers_Auto_Fixed);
+  }
+  if (feature.properties.Type == 'Bus_Ped'){
+    return L.circleMarker(latlng, typeMarkers_Bus_Ped);
+  }
+  if (feature.properties.Type == 'Bus_Bike'){
+    return L.circleMarker(latlng, typeMarkers_Bus_Bike);
+  }
+  if (feature.properties.Type == 'Bus_Auto'){
+    return L.circleMarker(latlng, typeMarkers_Bus_Auto);
+  }
+  if (feature.properties.Type == 'Truck_Ped'){
+    return L.circleMarker(latlng, typeMarkers_Truck_Ped);
+  }
+  if (feature.properties.Type == 'Truck_Bike'){
+    return L.circleMarker(latlng, typeMarkers_Truck_Bike);
+  }
+  if (feature.properties.Type == 'ATV'){
+    return L.circleMarker(latlng, typeMarkers_ATV);
+  }
 };
 
-var pointToLayer_compare = function (feature, latlng) {
-  if (feature.properties.FEATURE == 'EQUESTRIAN'){
-    return L.circleMarker(latlng, equestrianMarkers);
-  }
-  if (feature.properties.FEATURE == 'NATURE OBSERVATION' ||
-      feature.properties.FEATURE == 'HISTORIC SITE'){
-    return L.circleMarker(latlng, sightseeingMarkers);
-  }
-  if (feature.properties.FEATURE == 'BOATING' ||
-      feature.properties.FEATURE == 'CANOEING' ||
-      feature.properties.FEATURE == 'FISHING'){
-    return L.circleMarker(latlng, waterMarkers);
-  }
-  if (feature.properties.FEATURE == 'HIKING TRAIL'){
-    return L.circleMarker(latlng, hikingMarkers);
-  }
-  if (feature.properties.FEATURE == 'CAMPGROUND' ||
-      feature.properties.FEATURE == 'PRIMITIVE CAMPSITE' ||
-      feature.properties.FEATURE == 'INTERPRETIVE CAMPSITE' ||
-      feature.properties.FEATURE == 'PICNIC SITE'){
-    return L.circleMarker(latlng, campingMarkers);
-  }
-};
+
 
 //ON EACH FEATURE FUNCTION
-var onEachFeature_bindPopup = function(feature, layer) {
-  layer.bindPopup(feature.properties.NAME);
+// zoom
+var zoomFeature = function(feature, layer) {
+  layer.on('click', function (e) {
+    $('#crash-info').empty();
+    $('#info-bar').show();
+    $('#gender-form').hide();
+    $('#day-form').hide();
+    $('#type-form').hide();
+    $('#gender-legend').hide();
+    $('#day-legend').hide();
+    $('#type-legend').hide();
+    map.fitBounds(this.getBounds());
+    $('#reset-map-zoom-button').show();
+    document.getElementById('reset-map-zoom-button').className = 'button-reset';
+    var day = feature.properties.Day;
+    var age = feature.properties.Age;
+    var type = feature.properties.Type;
+    var gender = feature.properties.Sex;
+    var fatalityDate = feature.properties.FatalityDate;
+    // var html = '<div  id= "shape-'+feature.id+'" data-id = "'+feature.id+'">  <h2> Gender: </h2> <p>'+gender+'</p> <h2> Crash Type: </h2> <p>'+type+'</p> <h2> Fatality Date: </h2> <p>'+fatalityDate+'</p> <h2> Day of the Week: </h2> <p>'+day+'</p> <h2> Age: </h2> <p>'+age+'</p> </div>';
+    var html = '<div  id= "shape-'+feature.id+'" data-id = "'+feature.id+'">  <h4> Gender: '+gender+' <br> Crash Type: '+type+' <br>  Fatality Date:'+fatalityDate+' <br>  Day of the Week: '+day+' <br>  Age: '+age+'</div>';
+    $('#crash-info').append(html);
+  });
 };
+
+
+
+
 
 
 //FUNCTIONS TO CREATE SLIDES
@@ -170,202 +422,647 @@ var onEachFeature_bindPopup = function(feature, layer) {
 var markers;
 // slide 1 - intro
 var setSlide1 = function(dataset){
-  document.getElementById('previous-button').className = '';
-  // $('#previous-button').className = '';
-  // if I replace document.getElementById with the aobve line, the previous button does not disappear after clicking the next button and then going back to this slide
-  document.getElementById('next-button').className = 'button-next';
-  // $('#next-button').className='button-next';
-  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
+  document.getElementById('filter-button').className = 'button-filter';
+  document.getElementById('all-gender-filter-button').className = 'button-filter-gender';
+  document.getElementById('all-day-filter-button').className = 'button-filter-day';
+  document.getElementById('all-type-filter-button').className = 'button-filter-type';
+  document.getElementById('reset-map-zoom-button').className = 'button-reset';
+  document.getElementById('reset-original-map-button').className = 'button-original';
   $('#attraction-feature').text('');
-  $('#info').text(introText);
-  $('#final-legend').hide();
+  $('#info-bar').hide();
+  $('#gender-form').hide();
+  $('#day-form').hide();
+  $('#type-form').hide();
+  $('#reset-original-map-button').hide();
+  $('#reset-map-zoom-button').hide();
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
   $.ajax(dataset).done(function(data) {
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
       pointToLayer: pointToLayer_all,
-      onEachFeature: onEachFeature_bindPopup
+      onEachFeature: zoomFeature,
     });
     markers.addTo(map);
   });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide2(dataset);
-    map.fitBounds(this.getBounds());
+  $('#filter-button').on('click', function(){
+    markers.clearLayers();
+    $('#info-bar').hide();
+    $('#gender-form').hide();
+    $('#day-form').hide();
+    $('#type-form').hide();
+    $('#reset-original-map-button').show();
+    if($('#gender-radial-F').prop('checked')){
+      setSlide2(dataset);
+    }
+    if($('#gender-radial-M').prop('checked')){
+      setSlide3(dataset);
+    }
+    if($('#day-radial-mon').prop('checked')){
+      setSlide4(dataset);
+    }
+    if($('#day-radial-tue').prop('checked')){
+      setSlide5(dataset);
+    }
+    if($('#day-radial-wed').prop('checked')){
+      setSlide6(dataset);
+    }
+    if($('#day-radial-thu').prop('checked')){
+      setSlide7(dataset);
+    }
+    if($('#day-radial-fri').prop('checked')){
+      setSlide8(dataset);
+    }
+    if($('#day-radial-sat').prop('checked')){
+      setSlide9(dataset);
+    }
+    if($('#day-radial-sun').prop('checked')){
+      setSlide10(dataset);
+    }
+    if($('#type-radial-auto-ped').prop('checked')){
+      setSlide11(dataset);
+    }
+    if($('#type-radial-auto-bike').prop('checked')){
+      setSlide12(dataset);
+    }
+    if($('#type-radial-auto-auto').prop('checked')){
+      setSlide13(dataset);
+    }
+    if($('#type-radial-auto-fixed').prop('checked')){
+      setSlide14(dataset);
+    }
+    if($('#type-radial-bus-ped').prop('checked')){
+      setSlide15(dataset);
+    }
+    if($('#type-radial-bus-bike').prop('checked')){
+      setSlide16(dataset);
+    }
+    if($('#type-radial-bus-auto').prop('checked')){
+      setSlide17(dataset);
+    }
+    if($('#type-radial-truck-ped').prop('checked')){
+      setSlide18(dataset);
+    }
+    if($('#type-radial-truck-bike').prop('checked')){
+      setSlide19(dataset);
+    }
+    if($('#type-radial-atv').prop('checked')){
+      setSlide20(dataset);
+    }
+    if($('#gender-radial-all').prop('checked')){
+      setSlide21(dataset);
+    }
+    if($('#day-radial-all').prop('checked')){
+      setSlide22(dataset);
+    }
+    if($('#type-radial-all').prop('checked')){
+      setSlide23(dataset);
+    }
   });
-};
-//slide 2 - horseback riding
-var setSlide2 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  // $('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  //document.getElementById('next-button').className = 'button-next';
-  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
-  $('#attraction-feature').text('Horseback Riding');
-  $('#info').text(equestrianText);
-  $('#final-legend').hide();
-  $.ajax(dataset).done(function(data) {
-    map.removeLayer(markers);
-    var parsedData = JSON.parse(data);
-    markers = L.geoJson(parsedData, {
-      filter: equestrianFilter,
-      pointToLayer: pointToLayer_equestrian,
-      onEachFeature: onEachFeature_bindPopup
-    });
-    markers.addTo(map);
-  });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide3(dataset);
-  });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
+  $('#reset-original-map-button').on('click', function(){
+    $('#gender-radial-F').prop('checked', false);
+    $('#gender-radial-M').prop('checked', false);
+    $('#day-radial-mon').prop('checked', false);
+    $('#day-radial-tue').prop('checked', false);
+    $('#day-radial-wed').prop('checked', false);
+    $('#day-radial-thu').prop('checked', false);
+    $('#day-radial-fri').prop('checked', false);
+    $('#day-radial-sat').prop('checked', false);
+    $('#day-radial-sun').prop('checked', false);
+    $('#day-radial-all').prop('checked', false);
+    $('#type-radial-auto-ped').prop('checked', false);
+    $('#type-radial-auto-bike').prop('checked', false);
+    $('#type-radial-auto-auto').prop('checked', false);
+    $('#type-radial-auto-fixed').prop('checked', false);
+    $('#type-radial-bus-ped').prop('checked', false);
+    $('#type-radial-bus-bike').prop('checked', false);
+    $('#type-radial-bus-auto').prop('checked', false);
+    $('#type-radial-tuck-ped').prop('checked', false);
+    $('#type-radial-truck-bus').prop('checked', false);
+    $('#type-radial-atv').prop('checked', false);
+    $('#gender-radial-all').prop('checked', false);
+    $('#day-radial-all').prop('checked', false);
+    $('#type-radial-all').prop('checked', false);
+    markers.clearLayers();
+    $('#filter-heading').text("");
+    $('#info').text("This map represents Philadelphia deaths resulting from crashes. You can filter through the deaths by the victim's gender, day of the week of the crash, or the type of crash. You can also click on individual points to view additional details about the crash and the victim.");
     setSlide1(dataset);
+    map.setView(new L.LatLng(40.006246, -75.130401),11);
+  });
+  $('#reset-map-zoom-button').on('click', function(){
+    $('#reset-map-zoom-button').hide();
+    $('#info-bar').hide();
+    $('#crash-info').empty();
+    $('#gender-legend').hide();
+    $('#day-legend').hide();
+    $('#type-legend').hide();
+    map.setView(new L.LatLng(40.006246, -75.130401),11);
+    remove(markers);
+  });
+  $('#all-gender-filter-button').on('click', function(){
+    $('#day-radial-mon').prop('checked', false);
+    $('#day-radial-tue').prop('checked', false);
+    $('#day-radial-wed').prop('checked', false);
+    $('#day-radial-thu').prop('checked', false);
+    $('#day-radial-fri').prop('checked', false);
+    $('#day-radial-sat').prop('checked', false);
+    $('#day-radial-sun').prop('checked', false);
+    $('#day-radial-all').prop('checked', false);
+    $('#type-radial-auto-ped').prop('checked', false);
+    $('#type-radial-auto-bike').prop('checked', false);
+    $('#type-radial-auto-auto').prop('checked', false);
+    $('#type-radial-auto-fixed').prop('checked', false);
+    $('#type-radial-bus-ped').prop('checked', false);
+    $('#type-radial-bus-bike').prop('checked', false);
+    $('#type-radial-bus-auto').prop('checked', false);
+    $('#type-radial-tuck-ped').prop('checked', false);
+    $('#type-radial-truck-bus').prop('checked', false);
+    $('#type-radial-atv').prop('checked', false);
+    $('#type-radial-all').prop('checked', false);
+    $('#reset-map-zoom-button').hide();
+    $('#info-bar').hide();
+    $('#gender-form').show();
+    $('#day-form').hide();
+    $('#type-form').hide();
+    map.setView(new L.LatLng(40.006246, -75.130401),11);
+  });
+  $('#all-day-filter-button').on('click', function(){
+    $('#type-radial-auto-ped').prop('checked', false);
+    $('#type-radial-auto-bike').prop('checked', false);
+    $('#type-radial-auto-auto').prop('checked', false);
+    $('#type-radial-auto-fixed').prop('checked', false);
+    $('#type-radial-bus-ped').prop('checked', false);
+    $('#type-radial-bus-bike').prop('checked', false);
+    $('#type-radial-bus-auto').prop('checked', false);
+    $('#type-radial-tuck-ped').prop('checked', false);
+    $('#type-radial-truck-bus').prop('checked', false);
+    $('#type-radial-all').prop('checked', false);
+    $('#gender-radial-F').prop('checked', false);
+    $('#gender-radial-M').prop('checked', false);
+    $('#gender-radial-all').prop('checked', false);
+    $('#reset-map-zoom-button').hide();
+    $('#info-bar').hide();
+    $('#day-form').show();
+    $('#gender-form').hide();
+    $('#type-form').hide();
+    map.setView(new L.LatLng(40.006246, -75.130401),11);
+  });
+  $('#all-type-filter-button').on('click', function(){
+    $('#day-radial-mon').prop('checked', false);
+    $('#day-radial-tue').prop('checked', false);
+    $('#day-radial-wed').prop('checked', false);
+    $('#day-radial-thu').prop('checked', false);
+    $('#day-radial-fri').prop('checked', false);
+    $('#day-radial-sat').prop('checked', false);
+    $('#day-radial-sun').prop('checked', false);
+    $('#day-radial-all').prop('checked', false);
+    $('#gender-radial-F').prop('checked', false);
+    $('#gender-radial-M').prop('checked', false);
+    $('#gender-radial-all').prop('checked', false);
+    $('#reset-map-zoom-button').hide();
+    $('#info-bar').hide();
+    $('#type-form').show();
+    $('#gender-form').hide();
+    $('#day-form').hide();
+    map.setView(new L.LatLng(40.006246, -75.130401),11);
   });
 };
-//slide 3 - sightseeing
+//gender - F
+var setSlide2 = function(dataset) {
+  markers.clearLayers();
+  $('#filter-heading').text('Female Victims');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: genderFilter_F,
+      pointToLayer: pointToLayer_gender_F,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//gender - M
 var setSlide3 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  // $('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  //document.getElementById('next-button').className = 'button-next';
-  // able to take the above line out completely as long as I leave the exact same line of code in the setSlide6 function
-  $('#attraction-feature').text('Sightseeing');
-  $('#info').text(sightseeingText);
-  $('#final-legend').hide();
+  markers.clearLayers();
+  $('#filter-heading').text('Male Victims');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
   $.ajax(dataset).done(function(data) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: sightseeingFilter,
-      pointToLayer: pointToLayer_sightseeing,
-      onEachFeature: onEachFeature_bindPopup
+      filter: genderFilter_M,
+      pointToLayer: pointToLayer_gender_M,
+      onEachFeature: zoomFeature
     });
     markers.addTo(map);
   });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide4(dataset);
-  });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
-    setSlide2(dataset);
-  });
 };
-//slide 4 - water activities
+//day - Mon
 var setSlide4 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  // $('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  //document.getElementById('next-button').className = 'button-next';
-  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
-  $('#attraction-feature').text('Water Activities');
-  $('#info').text(waterText);
-  $('#final-legend').hide();
+  markers.clearLayers();
+  $('#filter-heading').text('Monday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
   $.ajax(dataset).done(function(data) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: waterFilter,
-      pointToLayer: pointToLayer_water,
+      filter: dayFilter_Mon,
+      pointToLayer: pointToLayer_day_mon,
       onEachFeature: onEachFeature_bindPopup
     });
     markers.addTo(map);
   });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide5(dataset);
-  });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
-    setSlide3(dataset);
-  });
 };
-//slide 5 - hiking trails
+//day - Tue
 var setSlide5 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  // $('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  //document.getElementById('next-button').className = 'button-next';
-  // able to take the above line out completely as long as I leave the exact same line of code in the slide 6 function
-  $('#attraction-feature').text('Hiking Trails');
-  $('#info').text(hikingText);
-  $('#final-legend').hide();
+  markers.clearLayers();
+  $('#filter-heading').text('Tuesday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
   $.ajax(dataset).done(function(data) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: hikingFilter,
-      pointToLayer: pointToLayer_hiking,
-      onEachFeature: onEachFeature_bindPopup
+      filter: dayFilter_Tue,
+      pointToLayer: pointToLayer_day_tue,
+      onEachFeature: zoomFeature
     });
     markers.addTo(map);
   });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide6(dataset);
-  });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
-    setSlide4(dataset);
-  });
 };
-//slide 6 - camping & picnics
+//day - Wed
 var setSlide6 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  // $('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  document.getElementById('next-button').className = 'button-next';
-  //if I take away either the document.getElementById version then the next button doesnt show up anymore on any of the slide after getting to the final slide and pressing the previous button to backtrack through the slides
-  // $('#next-button').className = 'button-next';
-  // the $('#next-button') version on the line above does not sufficiently replace document.getElementById version, the same thing happens and the next button wont show up after click through the entire slideshow
-  $('#attraction-feature').text('Camping & Picnics');
-  $('#info').text(campingText);
+  $('#filter-heading').text('Wednesday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: dayFilter_Wed,
+      pointToLayer: pointToLayer_day_wed,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//day - Thu
+var setSlide7 = function(dataset) {
+  $('#filter-heading').text('Thursday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: dayFilter_Thu,
+      pointToLayer: pointToLayer_day_thu,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//day - Fri
+var setSlide8 = function(dataset) {
+  $('#filter-heading').text('Friday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: dayFilter_Fri,
+      pointToLayer: pointToLayer_day_fri,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//day - Sat
+var setSlide9 = function(dataset) {
+  $('#filter-heading').text('Saturday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
   $('#final-legend').hide();
   $.ajax(dataset).done(function(data) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: campingFilter,
-      pointToLayer: pointToLayer_camping,
-      onEachFeature: onEachFeature_bindPopup
+      filter: dayFilter_Sat,
+      pointToLayer: pointToLayer_day_sat,
+      onEachFeature: zoomFeature
     });
     markers.addTo(map);
   });
-  $('#next-button').off();
-  $('#next-button').on('click', function(){
-    setSlide7(dataset);
-  });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
-    setSlide5(dataset);
-  });
 };
-//slide 7 - final comparison slide
-var setSlide7 = function(dataset) {
-  document.getElementById('previous-button').className = 'button-previous';
-  //$('#previous-button').className = 'button-previous';
-  // if I replace document.getElementById with the aobve line, the previous button does not show up at all
-  document.getElementById('next-button').className = '';
-  //  $('#next-button').className = '';
-  // if I use the above line for the next button instead of document.getElementById, the next button does not disappear on the final slide
-  $('#attraction-feature').text('');
-  $('#info').text(finalText);
-  $('#final-legend').show();
+//day - Sun
+var setSlide10 = function(dataset) {
+  $('#filter-heading').text('Sunday Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
   $.ajax(dataset).done(function(data) {
     map.removeLayer(markers);
     var parsedData = JSON.parse(data);
     markers = L.geoJson(parsedData, {
-      filter: finalFilter,
-      pointToLayer: pointToLayer_compare,
-      onEachFeature: onEachFeature_bindPopup
+      filter: dayFilter_Sun,
+      pointToLayer: pointToLayer_day_sun,
+      onEachFeature: zoomFeature
     });
     markers.addTo(map);
   });
-  $('#previous-button').off();
-  $('#previous-button').on('click', function(){
-    setSlide6(dataset);
+};
+//type - Auto_Ped
+var setSlide11 = function(dataset) {
+  $('#filter-heading').text('Auto/Pedestrian Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Auto_Ped,
+      pointToLayer: pointToLayer_type_Auto_Ped,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
   });
 };
+//type - Auto_Bike
+var setSlide12 = function(dataset) {
+  $('#filter-heading').text('Auto/Bicycle Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Auto_Bike,
+      pointToLayer: pointToLayer_type_Auto_Bike,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Auto_Auto
+var setSlide13 = function(dataset) {
+  $('#filter-heading').text('Auto/Auto Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Auto_Auto,
+      pointToLayer: pointToLayer_type_Auto_Auto,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Auto_Fixed
+var setSlide14 = function(dataset) {
+  $('#filter-heading').text('Auto (solo) Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Auto_Fixed,
+      pointToLayer: pointToLayer_type_Auto_Fixed,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Bus_Ped
+var setSlide15 = function(dataset) {
+  $('#filter-heading').text('Bus/Pedestrian Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Bus_Ped,
+      pointToLayer: pointToLayer_type_Bus_Ped,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Bus_Bike
+var setSlide16 = function(dataset) {
+  $('#filter-heading').text('Bus/Bicycle Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Bus_Bike,
+      pointToLayer: pointToLayer_type_Bus_Bike,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Bus_Auto
+var setSlide17 = function(dataset) {
+  $('#filter-heading').text('Bus/Auto Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Bus_Auto,
+      pointToLayer: pointToLayer_type_Bus_Auto,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+
+};
+//type - Truck_Ped
+var setSlide18 = function(dataset) {
+  $('#filter-heading').text('Truck/Pedestrian Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Truck_Ped,
+      pointToLayer: pointToLayer_type_Truck_Ped,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - Truck_Bike
+var setSlide19 = function(dataset) {
+  $('#filter-heading').text('Truck/Bicycle Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_Truck_Bike,
+      pointToLayer: pointToLayer_type_Truck_Bike,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//type - ATV
+var setSlide20 = function(dataset) {
+  $('#filter-heading').text('ATV Crashes');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $('#final-legend').hide();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      filter: typeFilter_ATV,
+      pointToLayer: pointToLayer_type_ATV,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//compare - gender
+var setSlide21 = function(dataset) {
+  $('#filter-heading').text(' Victim Gender Comparison');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').show();
+  $('#day-legend').hide();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      pointToLayer: pointToLayer_compare_gender,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//compare - day
+var setSlide22 = function(dataset) {
+  $('#filter-heading').text('Crash Day of Week Comparison');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').show();
+  $('#type-legend').hide();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      pointToLayer: pointToLayer_compare_day,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+//compare - type
+var setSlide23 = function(dataset) {
+  $('#filter-heading').text('Type of Crash Comparison');
+  $('#info').text('Click on individual points to view additional details about the crash and the victim.');
+  $('#gender-legend').hide();
+  $('#day-legend').hide();
+  $('#type-legend').show();
+  $('#crash-info').empty();
+  $.ajax(dataset).done(function(data) {
+    map.removeLayer(markers);
+    var parsedData = JSON.parse(data);
+    markers = L.geoJson(parsedData, {
+      pointToLayer: pointToLayer_compare_type,
+      onEachFeature: zoomFeature
+    });
+    markers.addTo(map);
+  });
+};
+
+
+
 
 
 //RUN IT!
@@ -378,8 +1075,8 @@ $(document).ready(function() {
 
 //make map
 var map = L.map('map', {
-  center: [43.061485, -75.975287],
-  zoom: 7
+  center: [40.006246, -75.130401],
+  zoom: 11
 });
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
