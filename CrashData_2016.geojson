@@ -247,6 +247,258 @@
           40.036256533388645
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-28",
+        "FatalityDate": "2015-12-28",
+        "Time": "05:43:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 48,
+        "Type": "Auto_Ped",
+        "Day": "Monday",
+        "IntersectingStreet": "HarbisonSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.06451606750488,
+          40.036256533388645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-21",
+        "FatalityDate": "2015-12-21",
+        "Time": "17:30:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 75,
+        "Type": "Auto_Auto",
+        "Day": "Monday",
+        "IntersectingStreet": "PlazaDr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.006183385849,
+          40.10157077044217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-20",
+        "FatalityDate": "2015-12-20",
+        "Time": "02:43:00",
+        "PrincipalStreet": "TorresdaleAve",
+        "Sex": "F",
+        "Age": 25,
+        "Type": "Auto_Fixed",
+        "Day": "Sunday",
+        "IntersectingStreet": "8000Block"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.02520561218262,
+          40.035303656376854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-19",
+        "FatalityDate": "2015-12-19",
+        "Time": "18:30:00",
+        "PrincipalStreet": "ByberryRd",
+        "Sex": "M",
+        "Age": 73,
+        "Type": "Auto_Ped",
+        "Day": "Saturday",
+        "IntersectingStreet": "ProctorRd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.01312494277954,
+          40.12228909512226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-12-08",
+        "FatalityDate": "2015-12-08",
+        "Time": "07:21:00",
+        "PrincipalStreet": "FoxSt",
+        "Sex": "M",
+        "Age": 57,
+        "Type": "Auto_Fixed",
+        "Day": "Tuesday",
+        "IntersectingStreet": "AbbotsfordAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.17809689044952,
+          40.01433288525049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-24",
+        "FatalityDate": "2015-11-24",
+        "Time": "18:40:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "F",
+        "Age": 19,
+        "Type": "Auto_Fixed",
+        "Day": "Tuesday",
+        "IntersectingStreet": "4000Block"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1100492477417,
+          40.02823059274138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-21",
+        "FatalityDate": "2015-11-21",
+        "Time": "22:30:00",
+        "PrincipalStreet": "RooseveltBlvd",
+        "Sex": "M",
+        "Age": 19,
+        "Type": "Auto_Fixed",
+        "Day": "Saturday",
+        "IntersectingStreet": "WoodwardSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.038241147995,
+          40.07124910705814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-19",
+        "FatalityDate": "2015-11-19",
+        "Time": "20:05:00",
+        "PrincipalStreet": "63rdSt",
+        "Sex": "M",
+        "Age": 27,
+        "Type": "Auto_Ped",
+        "Day": "Thursday",
+        "IntersectingStreet": "MarketSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.24672389030457,
+          39.96281315896609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-16",
+        "FatalityDate": "2015-11-16",
+        "Time": "09:10:00",
+        "PrincipalStreet": "WoodlandAve",
+        "Sex": "F",
+        "Age": 38,
+        "Type": "Auto_Ped",
+        "Day": "Monday",
+        "IntersectingStreet": "54thSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.21898984909058,
+          39.93634565370247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-07",
+        "FatalityDate": "2015-11-07",
+        "Time": "13:38:00",
+        "PrincipalStreet": "ParsideAve",
+        "Sex": "M",
+        "Age": 51,
+        "Type": "Auto_Bike",
+        "Day": "Saturday",
+        "IntersectingStreet": "BrynMawrAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.22511601448059,
+          39.987577069789886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-07",
+        "FatalityDate": "2015-11-07",
+        "Time": "04:36:00",
+        "PrincipalStreet": "BroadSt",
+        "Sex": "F",
+        "Age": 50,
+        "Type": "Auto_Ped",
+        "Day": "Saturday",
+        "IntersectingStreet": "AlleghenyAve"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.15285730361938,
+          40.00156652011142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "CrashDate": "2015-11-06",
+        "FatalityDate": "2015-11-06",
+        "Time": "06:25:00",
+        "PrincipalStreet": "GurneySt",
+        "Sex": "M",
+        "Age": 25,
+        "Type": "Auto_Ped",
+        "Day": "Friday",
+        "IntersectingStreet": "FrontSt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.13014435768126,
+          39.99436666737265
+        ]
+      }
     }
   ]
 }
