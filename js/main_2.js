@@ -11,7 +11,7 @@ var markers=[];
 //all markers
 var allMarkers =  {
    radius: 10,
-   fillColor: '#006388',
+   fillColor: '#93c0c0',
    weight: 0,
    fillOpacity: 1
 };
@@ -243,79 +243,79 @@ var pointToLayer_all = function (feature, latlng) {
 };
 //gender - F
 var pointToLayer_gender_F = function (feature, latlng) {
-  return L.circleMarker(latlng, genderMarkers_F);
+  return L.circleMarker(latlng, allMarkers);
 };
 //gender - F
 var pointToLayer_gender_M = function (feature, latlng) {
-  return L.circleMarker(latlng, genderMarkers_M);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Mon
 var pointToLayer_day_mon = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Mon);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Tue
 var pointToLayer_day_tue = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Tue);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Wed
 var pointToLayer_day_wed = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Wed);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Thu
 var pointToLayer_day_thu = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Thu);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Fri
 var pointToLayer_day_fri = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Fri);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Sat
 var pointToLayer_day_sat = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Sat);
+  return L.circleMarker(latlng, allMarkers);
 };
 //day - Sun
 var pointToLayer_day_sun = function (feature, latlng) {
-  return L.circleMarker(latlng, dayMarkers_Sun);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Auto_Ped
 var pointToLayer_type_Auto_Ped = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Auto_Ped);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Auto_Bike
 var pointToLayer_type_Auto_Bike = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Auto_Bike);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Auto_Auto
 var pointToLayer_type_Auto_Auto = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Auto_Auto);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Auto_Fixed
 var pointToLayer_type_Auto_Fixed = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Auto_Fixed);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Bus_Ped
 var pointToLayer_type_Bus_Ped = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Bus_Ped);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Bus_Bike
 var pointToLayer_type_Bus_Bike = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Bus_Bike);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Bus_Auto
 var pointToLayer_type_Bus_Auto = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Bus_Auto);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Truck_Ped
 var pointToLayer_type_Truck_Ped = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Truck_Ped);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - Truck_Bike
 var pointToLayer_type_Truck_Bike = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_Truck_Bike);
+  return L.circleMarker(latlng, allMarkers);
 };
 //type - ATV
 var pointToLayer_type_ATV = function (feature, latlng) {
-  return L.circleMarker(latlng, typeMarkers_ATV);
+  return L.circleMarker(latlng, allMarkers);
 };
 //compare - gender
 var pointToLayer_compare_gender = function (feature, latlng) {
@@ -406,8 +406,7 @@ var zoomFeature = function(feature, layer) {
     var type = feature.properties.Type;
     var gender = feature.properties.Sex;
     var fatalityDate = feature.properties.FatalityDate;
-    // var html = '<div  id= "shape-'+feature.id+'" data-id = "'+feature.id+'">  <h2> Gender: </h2> <p>'+gender+'</p> <h2> Crash Type: </h2> <p>'+type+'</p> <h2> Fatality Date: </h2> <p>'+fatalityDate+'</p> <h2> Day of the Week: </h2> <p>'+day+'</p> <h2> Age: </h2> <p>'+age+'</p> </div>';
-    var html = '<div  id= "shape-'+feature.id+'" data-id = "'+feature.id+'">  <h4> Gender: '+gender+' <br> Crash Type: '+type+' <br>  Fatality Date:'+fatalityDate+' <br>  Day of the Week: '+day+' <br>  Age: '+age+'</div>';
+    var html = '<div  id= "shape-'+feature.id+'" data-id = "'+feature.id+'">  <h4> Gender: '+gender+' <br>   Age: '+age+' <br> Crash Type: '+type+' <br>  Fatality Date:'+fatalityDate+' <br>  Day of the Week: '+day+'</div>';
     $('#crash-info').append(html);
   });
 };
